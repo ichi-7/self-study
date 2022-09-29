@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <th>区分</th>
-    <td><%= @book.inout %></td>
+    <td><%= @book.inout == 1 ? "収入" : "支出" %></td>
   </tr>
   <tr>
     <th>科目</th>
