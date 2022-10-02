@@ -1,0 +1,10 @@
+<h1>画像投稿フォーム</h1>
+<%= form_with model: @spot do |f| %>
+  <h4>スポット名</h4>
+  <%= f.text_field :spot_name %>
+  <h4>スポットの説明</h4>
+  <%= f.text_area :caption %>
+  <h4>画像</h4>
+  <%= f.file_field :image , accept: "image/*" %>
+  <%= f.submit "投稿" %>
+<% end %>

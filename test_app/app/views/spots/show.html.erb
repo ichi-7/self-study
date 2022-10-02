@@ -1,0 +1,12 @@
+<div>
+  <%= image_tag @spot.get_image %>
+  <p>スポット名：<%= @spot.spot_name %></p>
+  <p>スポットの説明：<%= @spot.caption %></p>
+  <p><%= image_tag @spot.user.get_profile_image, size: '100x100' %></p>
+  <p>ユーザー名：<%= @spot.user.name %></p>
+  <p>投稿日：<%= @spot.created_at.strftime("%Y/%m/%d %I:%M %p") %></p>
+  <% if @spot.user == current_user %>
+    <%= link_to "削除", spot_path(@spot), method: :delete %>
+  <% end %>
+  <%= link_to "一覧に戻る", spots_path %>
+</div>

@@ -1,0 +1,16 @@
+<!-- ユーザー情報 -->
+<div>
+  <%= image_tag @user.get_profile_image, size: '100x100' %>
+  <%= link_to "プロフィールを編集", edit_user_path(@user.id) if @user == current_user %>
+  <h3><%= @user.name %></h3>
+  <h4><%= @user.introduction %></h4>
+</div>
+
+<!-- 投稿一覧 -->
+<% @spots.each do |spot| %>
+  <div>
+    <%= image_tag spot.get_image %>
+    <p>スポット名：<%= spot.spot_name %></p>
+    <p>スポットの説明：<%= spot.caption %></p>
+  </div>
+<% end %>

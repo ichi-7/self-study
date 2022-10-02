@@ -14,26 +14,32 @@
     <header>
       <% if user_signed_in? %>
         <li>
-          <%= link_to "ホーム", root_path %>
+          <%= link_to "HOME", root_path %>
         </li>
         <li>
-          <%= link_to "このサイトについて", homes_about_path %>
+          <%= link_to "ABOUT", about_path %>
         </li>
         <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to "MY PAGE", user_path(current_user.id) %>
+        </li>
+        <li>
+          <%= link_to "POST SPOT", new_spot_path %>
+        </li>
+        <li>
+          <%= link_to "LOG OUT", destroy_user_session_path, method: :delete %>
         </li>
       <% else %>
         <li>
-          <%= link_to "ホーム", root_path %>
+          <%= link_to "HOME", root_path %>
         </li>
         <li>
-          <%= link_to "このサイトについて", homes_about_path %>
+          <%= link_to "ABOUT", about_path %>
         </li>
         <li>
-          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "SIGN UP", new_user_registration_path %>
         </li>
         <li>
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "LOG IN", new_user_session_path %>
         </li>
       <% end %>
     </header>
