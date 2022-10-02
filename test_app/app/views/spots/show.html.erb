@@ -10,3 +10,19 @@
   <% end %>
   <%= link_to "一覧に戻る", spots_path %>
 </div>
+
+<div>
+  <%= form_with model: [@spot, @spot_comment] do |f| %>
+    <%= f.text_area :comment, rows: '3', placeholder: "コメントを入力" %>
+    <%= f.submit "送信" %>
+  <% end %>
+</div>
+
+<div>
+  <p>コメント件数：<%= @spot.spot_comments.count %> コメント</p>
+  <% @spot.spot_comments.each do |spot_comment| %>
+    <%= image_tag spot_comment.user.get_profile_image, size: '50x50' %>
+    <%= spot_comment.user.name %>
+    <%= spot_comment.comment %>
+  <% end %>
+</div>
