@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show, :edit, :update]
   resources :spots, only: [:new, :create, :index, :show, :destroy] do
-    resources :spot_comments, only: [:create]
+    resource :favorites, only: [:create, :destroy]
+    resources :spot_comments, only: [:create, :destroy]
   end
   get 'homes/about', as: :about
   
-end
+end 
