@@ -1,0 +1,12 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.nav-item:hover{
+  background-color: #EEEEEE;
+  letter-spacing: 0.15em;
+  transition: .6s;
+}
+
+.top-item {
+  margin: 220px auto auto auto;
+}

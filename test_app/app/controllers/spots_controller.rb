@@ -7,8 +7,7 @@ class SpotsController < ApplicationController
   def create
     @spot = Spot.new(spot_params)
     @spot.user_id = current_user.id
-    @spot.save
-    redirect_to spots_path
+    @spot.save ? (redirect_to spots_path) : (render :new)
   end
   
   def index

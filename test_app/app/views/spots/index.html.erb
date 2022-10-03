@@ -1,11 +1,27 @@
-<h2>投稿一覧</h2>
-<% @spots.each do |spot| %>
-<div>
-  <%= image_tag spot.get_image, size: '400x225' %>
-  <h3><%= spot.spot_name %></h3>
-  <p><%= link_to "続きを読む", spot_path(spot) %></p>
-  <%= image_tag spot.user.get_profile_image, size: '50x50' %>
-  投稿者：<%= link_to spot.user.name, user_path(spot.user_id) %>
-  <%= spot.created_at.strftime("%Y年%m月%d日") %>
-</div><br>
-<% end %>
+<h2 class="text-center pt-5">投稿一覧</h2>
+<div class="card-list-container py-5">
+  <% @spots.each do |spot| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div>
+      <%= image_tag spot.get_image, class:"card-img-top", size: '520x340' %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <%= image_tag spot.user.get_profile_image, size: '100x100', class: "mt-2 rounded-circle" %>
+          </div>
+          <div class="col-7 pl-4">
+            <h3 class="card-title"><i class="fas fa-map-marker-alt"></i> <%= spot.spot_name %></h3>
+            <p><%= link_to "続きを読む", spot_path(spot) %></p>
+            <i class="far fa-user"></i> <%= link_to spot.user.name, user_path(spot.user_id) %>　|　<%= spot.favorites.count %>コメント
+          </div>
+          <div class="col-3 text-right d-flex align-items-end">
+            <div>
+              <i class="far fa-calendar"></i> <%= spot.created_at.strftime("%Y年%m月%d日") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
