@@ -6,11 +6,4 @@
   <h4><%= @user.introduction %></h4>
 </div>
 
-<!-- 投稿一覧 -->
-<% @spots.each do |spot| %>
-  <div>
-    <%= image_tag spot.get_image %>
-    <p>スポット名：<%= spot.spot_name %></p>
-    <p>スポットの説明：<%= spot.caption %></p>
-  </div>
-<% end %>
+<%= render 'layouts/list', spots: @spots %>
