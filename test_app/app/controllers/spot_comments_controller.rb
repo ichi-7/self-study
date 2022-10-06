@@ -1,17 +1,17 @@
 class SpotCommentsController < ApplicationController
   
   def create
+    @spot = Spot.find(params[:spot_id])
     spot = Spot.find(params[:spot_id])
     comment = SpotComment.new(spot_comment_params)
     comment.user_id = current_user.id
     comment.spot_id = spot.id
     comment.save
-    redirect_to spot_path(spot)
   end
   
   def destroy
+    @spot = Spot.find(params[:spot_id])
     SpotComment.find(params[:id]).destroy
-    redirect_to spot_path(params[:spot_id])
   end
   
   private

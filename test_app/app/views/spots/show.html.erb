@@ -1,4 +1,4 @@
-<div>
+<div id="spot_<%= @spot.id %>">
   <%= image_tag @spot.get_image %>
   <p>スポット名：<%= @spot.spot_name %></p>
   <p>スポットの説明：<%= @spot.caption %></p>
@@ -8,23 +8,22 @@
   <% if @spot.user == current_user %>
     <%= link_to "削除", spot_path(@spot), method: :delete %>
   <% end %>
-  <%= render "layouts/favorite", spot: @spot %>
+  <p class="favorite-btn">
+    <%= render "layouts/favorite", spot: @spot %>
+  </p>
   <%= link_to "一覧に戻る", spots_path %>
 </div>
 
 <div>
-  <%= form_with model: [@spot, @spot_comment] do |f| %>
+  <%= form_with model: [@spot, @spot_comment], local: false do |f| %>
     <%= f.text_area :comment, rows: '3', placeholder: "コメントを入力" %>
     <%= f.submit "送信" %>
   <% end %>
 </div>
 
 <div>
-  <p>コメント件数：<%= @spot.spot_comments.count %> コメント</p>
-  <% @spot.spot_comments.each do |spot_comment| %>
-    <%= image_tag spot_comment.user.get_profile_image, size: '50x50' %>
-    <%= spot_comment.user.name %>
-    <%= spot_comment.comment %>
-    <%= link_to "削除", spot_spot_comment_path(@spot.id,spot_comment.id), method: :delete if spot_comment.user == current_user %>
-  <% end %>
+  <p class="spot_<%= @spot.id %>_comments_count">コメント件数：<%= @spot.spot_comments.count %> コメント</p>
+  <div class="spot_<%= @spot.id %>_comments">
+    <%= render "layouts/comment", spot: @spot %>
+  </div>
 </div>

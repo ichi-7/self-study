@@ -1,14 +1,10 @@
 <!-- 非同期いいね -->
-<% if spot.favorited_by?(current_user) %>
-  <p>
-    <%= link_to spot_favorites_path(spot.id), method: :delete, remote: true do %>
-      ❤︎<%= spot.favorites.count %> いいね
-    <% end %>
-  </p>
-  <% else %>
-  <p>
-    <%= link_to spot_favorites_path(spot.id), method: :post, remote: true do %>
-      ♡<%= spot.favorites.count %>いいね
-    <% end %>
-  </p>
+<% if @spot.favorited_by?(current_user) %>
+  <%= link_to spot_favorites_path(@spot.id), method: :delete, remote: true do %>
+    ❤︎<%= @spot.favorites.count %> いいね
+  <% end %>
+<% else %>
+  <%= link_to spot_favorites_path(@spot.id), method: :post, remote: true do %>
+    ♡<%= @spot.favorites.count %>いいね
+  <% end %>
 <% end %>

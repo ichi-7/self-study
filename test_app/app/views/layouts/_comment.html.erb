@@ -1,0 +1,6 @@
+<% @spot.spot_comments.each do |spot_comment| %>
+  <%= image_tag spot_comment.user.get_profile_image, size: '50x50' %>
+  <%= spot_comment.user.name %>
+  <%= spot_comment.comment %>
+  <%= link_to "削除", spot_spot_comment_path(@spot.id,spot_comment.id), method: :delete if spot_comment.user == current_user %>
+<% end %>
