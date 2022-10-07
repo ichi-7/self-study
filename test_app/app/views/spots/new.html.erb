@@ -1,19 +1,21 @@
-<h1>画像投稿フォーム</h1>
-<% if @spot.errors.any? %>
-  <%= @spot.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @spot.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: @spot do |f| %>
-  <h4>スポット名</h4>
-  <%= f.text_field :spot_name %>
-  <h4>スポットの説明</h4>
-  <%= f.text_area :caption %>
-  <h4>画像</h4>
-  <%= f.file_field :image , accept: "image/*" %><br>
-  <%= f.submit "投稿" %>
-<% end %>
+<div class="container w-50 mt-4">  
+  <h2 class="text-center">画像投稿フォーム</h2>
+  <% if @spot.errors.any? %>
+    <%= @spot.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @spot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  <%= form_with model: @spot do |f| %>
+    <h5 class="form-group mt-3">スポット名</h5>
+    <%= f.text_field :spot_name, class: 'form-control spot_title' %>
+    <h5 class="form-group mt-3">スポットの説明</h5>
+    <%= f.text_area :caption, class: 'form-control spot_body' %>
+    <h5 class="form-group mt-3">画像</h5>
+    <%= f.file_field :image , accept: "image/*" %><br>
+    <%= f.submit "投稿", class: 'btn btn-success' %>
+  <% end %>
+</div>

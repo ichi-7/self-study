@@ -1,0 +1,50 @@
+<h2 class="text-center pt-4"><i class="far fa-flag"></i> User一覧</h2>
+
+<div class="d-flex flex-row justify-content-center mt-4">
+  <div class="mr-5 pt-1">
+    <%= link_to "グループを作成", new_group_path %>　|　<%= link_to "グループ一覧", groups_path %>
+  </div>
+  <% if user_signed_in? %>
+    <div class="search_for">
+      <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word %>
+        <%= f.select :range, options_for_select([['User'],['Spot']]) %>
+        <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward_match"],["後方一致","backward_match"],["部分一致","partial_match"]]) %>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<!-- User一覧 -->
+<div class="card-list-container mb-5">
+  <% @users.each do |user| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <%= image_tag user.get_profile_image, size: '100x100', class: "mt-2 rounded-circle" %>
+          </div>
+          <div class="col-7 pl-4">
+            <h3 class="card-title"><i class="far fa-user"></i> <%= link_to user.name, user_path(user) %></h3>
+            <p><%= user.followings.count %>フォロー中 / <%= user.followers.count %>フォロワー</p>
+            <i class="fas fa-pen"></i> 投稿数： <%= user.spots.count %>
+          </div>
+          <div class="col-3">
+            <% unless current_user == user %>
+              <div class="btn btn-primary">
+                <% if current_user.following?(user) %>
+                    <%= link_to "フォロー解除", user_relationship_path(user.id,current_user.id), method: :delete, class: "text-white" %>
+                <% else %>
+                    <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "text-white" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

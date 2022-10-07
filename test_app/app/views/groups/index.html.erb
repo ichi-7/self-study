@@ -1,0 +1,28 @@
+<h2 class="text-center pt-4"><i class="far fa-flag"></i> グループ一覧</h2>
+
+<div class="card-list-container mb-5">
+  <% @groups.each do |group| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div>
+      <%= image_tag group.get_group_image, class:"card-img-top", size: '520x340' %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <p><%= image_tag User.find(group.owner_id).get_profile_image, size: '100x100', class: "mt-2 rounded-circle" %></p>
+          </div>
+          <div class="col-7 pl-4">
+            <h3 class="card-title"><i class="fas fa-map-marker-alt"></i> <%= group.group_name %></h3>
+            <p><%= link_to "続きを読む", group_path(group) %></p>
+            <i class="far fa-user"></i> <%= link_to User.find(group.owner_id).name, user_path(group.owner_id) %>
+          </div>
+          <div class="col-3 text-right d-flex align-items-end">
+            <div>
+              <i class="far fa-calendar"></i> <%= group.created_at.strftime("%Y年%m月%d日") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

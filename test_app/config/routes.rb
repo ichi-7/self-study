@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   
   get 'homes/about', as: :about
-  get 'relationships/followings'
-  get 'relationships/followers'
   get 'search' => 'searches#search'
   
   resources :users, only: [:index, :show, :edit, :update] do
@@ -18,5 +16,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :spot_comments, only: [:create, :destroy]
   end
+  
+  resources :groups, only: [:new, :create, :index, :show, :destroy]
   
 end 
