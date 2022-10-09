@@ -1,6 +1,6 @@
 <h2 class="text-center pt-4"><i class="far fa-flag"></i> <%= @group.group_name %></h2>
 
-<div class="card-list-container mb-5">
+<div class="card-list-container mb-3">
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <div>
       <%= image_tag @group.get_group_image, class:"card-img-top", size: '520x340' %>
@@ -13,19 +13,34 @@
           <div class="col-7 pl-4">
             <h3 class="card-title"><i class="fas fa-map-marker-alt"></i> <%= @group.group_name %></h3>
             <p><%= @group.introduction %></p>
+            メンバー数：<%= @group.group_users.count %>人
           </div>
           <div class="col-3 d-flex flex-column-reverse align-items-end">
             <div class="mt-5">
               <i class="far fa-calendar"></i> <%= @group.created_at.strftime("%Y年%m月%d日") %>
             </div>
+            <div class="mb-4">
             <% if @group.owner_id == current_user.id %>
-              <div class="mb-4">
-                <%= link_to "グループを編集", edit_group_path(@group), class: "btn btn-success" %>
-              </div>
+              <%= link_to "グループを編集", edit_group_path(@group), class: "btn btn-success" %>
+            <% elsif @group.group_user?(current_user) %>
+              <%= link_to "グループを抜ける", group_group_users_path(@group), method: :delete, class: "btn btn-danger" %>
+            <% else %>
+              <%= link_to "グループに参加する", group_group_users_path(@group), method: :post, class: "btn btn-primary" %>
             <% end %>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="card-list-container mb-5">
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div class="card-body">
+      メンバー：
+      <% @group_users.each do |group_user| %>
+        <%= group_user.user.name %>
+      <% end %>
     </div>
   </div>
 </div>

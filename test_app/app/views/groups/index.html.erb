@@ -19,11 +19,15 @@
             <div class="mt-5">
               <i class="far fa-calendar"></i> <%= group.created_at.strftime("%Y年%m月%d日") %>
             </div>
-            <% if group.owner_id == current_user.id %>
-              <div class="mb-4">
+            <div class="mb-4">
+              <% if group.owner_id == current_user.id %>
                 <%= link_to "グループを編集", edit_group_path(group), class: "btn btn-success" %>
-              </div>
-            <% end %>
+              <% elsif group.group_user?(current_user) %>
+                <%= link_to "グループを抜ける", group_group_users_path(group), method: :delete, class: "btn btn-danger" %>
+              <% else %>
+                <%= link_to "グループに参加する", group_group_users_path(group), method: :post, class: "btn btn-primary" %>
+              <% end %>
+            </div>  
           </div>
         </div>
       </div>

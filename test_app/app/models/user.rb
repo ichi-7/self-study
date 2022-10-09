@@ -18,6 +18,7 @@ class User < ApplicationRecord
   
   #グループ機能
   has_many :groups, dependent: :destroy
+  has_many :group_users, dependent: :destroy
   
   has_one_attached :profile_image
   
