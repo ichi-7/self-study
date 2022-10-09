@@ -16,9 +16,20 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:id])
   end
 
   def edit
+    @group = Group.find(params[:id])
+    unless @group.owner_id == current_user.id
+      redirect_to groups_path
+    end
+  end
+  
+  def update
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+    redirect_to group_path(@group)
   end
   
   def destroy

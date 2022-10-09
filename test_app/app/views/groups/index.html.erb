@@ -9,16 +9,21 @@
         <div class="row">
           <div class="col-2">
             <p><%= image_tag User.find(group.owner_id).get_profile_image, size: '100x100', class: "mt-2 rounded-circle" %></p>
+            <i class="far fa-user ml-3"></i> <%= link_to User.find(group.owner_id).name, user_path(group.owner_id) %>
           </div>
           <div class="col-7 pl-4">
             <h3 class="card-title"><i class="fas fa-map-marker-alt"></i> <%= group.group_name %></h3>
-            <p><%= link_to "続きを読む", group_path(group) %></p>
-            <i class="far fa-user"></i> <%= link_to User.find(group.owner_id).name, user_path(group.owner_id) %>
+            <p class="mb-4"><%= link_to "詳細を見る", group_path(group) %></p>
           </div>
-          <div class="col-3 text-right d-flex align-items-end">
-            <div>
+          <div class="col-3 d-flex flex-column-reverse align-items-end">
+            <div class="mt-5">
               <i class="far fa-calendar"></i> <%= group.created_at.strftime("%Y年%m月%d日") %>
             </div>
+            <% if group.owner_id == current_user.id %>
+              <div class="mb-4">
+                <%= link_to "グループを編集", edit_group_path(group), class: "btn btn-success" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

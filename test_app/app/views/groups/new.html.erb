@@ -7,6 +7,6 @@
       <%= f.text_area :introduction, class: 'form-control group_body' %>
     <h5 class="form-group mt-3">グループ画像</h5>
       <%= f.file_field :group_image, accept: "image/*" %><br><br>
-    <%= f.submit "投稿", class: 'btn btn-success' %>
+    <%= f.submit "グループを作成", class: 'btn btn-success' %> <%= link_to "戻る", users_path, class: "btn btn-danger" %>
   <% end %>
 </div>

@@ -31,7 +31,10 @@
             <p><%= user.followings.count %>フォロー中 / <%= user.followers.count %>フォロワー</p>
             <i class="fas fa-pen"></i> 投稿数： <%= user.spots.count %>
           </div>
-          <div class="col-3">
+          <div class="col-3 d-flex flex-column-reverse align-items-end">
+            <div class="mt-5">
+              <i class="far fa-calendar"></i> <%= user.created_at.strftime("%Y年%m月%d日") %>
+            </div>
             <% unless current_user == user %>
               <div class="btn btn-primary">
                 <% if current_user.following?(user) %>
