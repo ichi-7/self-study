@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     resource :group_users, only: [:create, :destroy]
   end
   
+  resources :inquiries, only: [:new, :create]
+  
 end 

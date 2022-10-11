@@ -1,0 +1,16 @@
+<h5>お問い合わせフォーム</h5>
+<% if @inquiry.errors.any? %>
+  <ul>
+    <% @inquiry.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @inquiry, local: true) do |f| %>
+  <h5>お名前</h5>
+  <%= f.text_field :name %>
+  <h5>イベント内容</h5>
+  <%= f.text_area :message %>
+  <%= f.submit "送信" %>
+<% end %>
