@@ -8,7 +8,7 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
       InquiryMailer.inquiry_mail(@inquiry,current_user).deliver
-      redirect_to root_path,notice: 'お問い合わせ内容を送信しました'
+      redirect_to groups_path, notice: 'お問い合わせ内容を送信しました'
     else
       render :new
     end
@@ -17,7 +17,7 @@ class InquiriesController < ApplicationController
   private
   
   def inquiry_params
-    params.require(:inquiry).permit(:name, :contact)
+    params.require(:inquiry).permit(:name, :message)
   end  
   
 end
