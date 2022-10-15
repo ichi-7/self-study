@@ -12,7 +12,8 @@
           <div class="col-7 pl-4">
             <h3 class="card-title"><i class="fas fa-map-marker-alt"></i> <%= spot.spot_name %></h3>
             <p><%= link_to "続きを読む", spot_path(spot) %></p>
-            <i class="far fa-user"></i> <%= link_to spot.user.name, user_path(spot.user_id) %>　|　<%= spot.favorites.count %>コメント
+            <i class="far fa-user"></i> 
+            <%= link_to spot.user.name, user_path(spot.user_id) %>　|　<%= spot.favorites.count %>いいね　|　<%= spot.spot_comments.count %>コメント
           </div>
           <div class="col-3 text-right d-flex align-items-end">
             <div>

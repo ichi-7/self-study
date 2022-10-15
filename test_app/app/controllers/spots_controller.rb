@@ -11,7 +11,7 @@ class SpotsController < ApplicationController
   end
   
   def index
-    @spots = Spot.all
+    @spots = Spot.includes(:favorites).sort{|a,b| b.favorites.count <=> a.favorites.count}
   end
 
   def show
